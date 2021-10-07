@@ -131,3 +131,11 @@ function deleteContact(firstName, lastName) {
 printContacts(addressBook);
 deleteContact("Rajat", "Sharma");
 printContacts(addressBook);
+
+
+function totalContact(numberOfContact){
+    return numberOfContact+1;
+}
+
+let numberOfCOntacts = addressBook.reduce(totalContact,0);
+console.log("Number of contacts: "+numberOfCOntacts);
