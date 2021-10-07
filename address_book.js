@@ -223,5 +223,24 @@ function sortContactsByName(array){
     return array;
 }
 
-addressBook = sortContactsByName(addressBook);
-printContacts(addressBook);
+let newaddressBook = sortContactsByName(addressBook);
+printContacts(newaddressBook);
+
+function sortContactsByAttribute(array,attribute){
+    array.sort((a,b)=> (a[attribute]>b[attribute]) ? 1 : ((a[attribute]<b[attribute])? -1 : 0));
+    return array;
+}
+editContact("Rajat", "Sharma", "city", "Agra");
+console.log("Sort by City:");
+newaddressBook = sortContactsByAttribute(addressBook,"city");
+printContacts(newaddressBook);
+
+editContact("Rajat", "Sharma", "state", "Delhi");
+console.log("Sort by State:");
+newaddressBook = sortContactsByAttribute(addressBook,"state");
+printContacts(newaddressBook);
+
+editContact("Rajat", "Sharma", "zip", 572345);
+console.log("Sort by Zip:");
+newaddressBook = sortContactsByAttribute(addressBook,"zip");
+printContacts(newaddressBook);
