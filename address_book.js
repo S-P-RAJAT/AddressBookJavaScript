@@ -161,3 +161,19 @@ function addContact(...params) {
 addContact("Rajat", "Sharma", "2nd cross, Hosa Road", "Bangalore", "Karnataka", "560100", "9191273498", "rajatsp@yahoo.com");
 addContact("Rajat", "Sharma", "2nd cross, Hosa Road", "Bangalore", "Karnataka", "560100", "9191273498", "rajatsp@yahoo.com");
 printContacts(addressBook);
+
+function searchContactInCity(firstName,lastName, city,array){
+    let contacts = array.filter(e=>e.city == city && e.firstName== firstName && e.lastName==lastName)
+    .reduce((totalCount,e)=>totalCount+1,0);
+    if(contacts==0)
+    return false;
+    else
+    return true;
+}
+let firstName = "Rajat";
+let lastName = "Sharma";
+let isPersonPresent = searchContactInCity(firstname,lastName,"Bangalore",addressBook);
+if(isPersonPresent==true)
+console.log("The person "+firstName+" "+lastName+" is found in the city ");
+else
+console.log("The person "+firstName+" "+lastName+" is not found in the city ");
