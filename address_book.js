@@ -21,6 +21,12 @@ class Contact{
         this.email = params[7];
     }
 
-
+    toString()
+    {
+        return "FirstName = "+this.firstName+", LastName = "+this.lastName+", Address = "+this.address+
+                ", City = "+this.city+", State = "+this.state+", Zip = "+this.zip+", Phone = "+this.phone+", Email = "+this.email;
+    }
 }
 
+let contact = new Contact("Rahul","Pandey","2nd cross, electronic city","Bangalore","Karnataka",560100,9876432387,"rahulp@yahoo.com");
+console.log(contact.toString());
