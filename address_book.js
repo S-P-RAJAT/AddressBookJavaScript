@@ -79,6 +79,9 @@ class Contact {
         return "FirstName = " + this.firstName + ", LastName = " + this.lastName + ", Address = " + this.address +
             ", City = " + this.city + ", State = " + this.state + ", Zip = " + this.zip + ", Phone = " + this.phoneNumber + ", Email = " + this.email;
     }
+    equals() {
+
+    }
 }
 let addressBook = new Array();
 
@@ -90,14 +93,41 @@ try {
     console.error(e);
 }
 
-function getContact(firstName,lastName){
-return addressBook.find(contact => contact.firstName == firstName && lastName == lastName);
+function getContact(firstName, lastName) {
+    return addressBook.findIndex(contact => (contact.firstName == firstName && contact.lastName == lastName));
 }
 
-function editContact(firstName, lastName, attribute, value){
-    let contact = getContact(firstName, lastName);
-    contact[attribute] = value;
-    console.log("Sucessfully edited: "+contact);
+function editContact(firstName, lastName, attribute, value) {
+
+    let contactIndex = getContact(firstName, lastName);
+    console.log(contactIndex);
+    if (contactIndex != -1) {
+
+        addressBook[contactIndex][attribute] = value;
+        console.log("Sucessfully edited: " + addressBook[contactIndex] + "\n");
+    } else {
+        console.log("No such contact!");
+    }
 }
 
-editContact("Rajat","Sharma","city","Delhi");
+editContact("Rajat", "Sharma", "city", "Delhi");
+
+function printContacts(addressBook) {
+    addressBook.forEach((contact, i) => {
+        console.log((i + 1) + ". " + contact.toString() + "\n")
+    });
+}
+
+function deleteContact(firstName, lastName) {
+    let contactIndex = getContact(firstName, lastName);
+    if (contactIndex == -1) {
+        console.log("No such contact!");
+    } else {
+        addressBook.splice(contactIndex, 1);
+        console.log("Successfully deleted!");
+    }
+}
+
+printContacts(addressBook);
+deleteContact("Rajat", "Sharma");
+printContacts(addressBook);
