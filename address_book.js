@@ -139,3 +139,25 @@ function totalContact(numberOfContact){
 
 let numberOfCOntacts = addressBook.reduce(totalContact,0);
 console.log("Number of contacts: "+numberOfCOntacts);
+
+function addContact(...params) {
+    firstname = params[0];
+    lastname = params[1]; 
+    let countOfPersons = addressBook.filter(contact=>contact.firstName == firstname && contact.lastName == lastname).reduce((totalPeople,e)=>totalPeople+1,0);
+    if (countOfPersons==0){
+        try{
+        let newContact = new Contact(params[0],params[1],params[2],params[3],params[4],params[5],params[6],params[7]);
+        addressBook.push(newContact);
+        console.log("Successfully added!");
+        }catch(e){
+            console.error(e);
+        }
+    }
+    else{
+        console.log("The Contact with name already exists");
+    }
+    
+}
+addContact("Rajat", "Sharma", "2nd cross, Hosa Road", "Bangalore", "Karnataka", "560100", "9191273498", "rajatsp@yahoo.com");
+addContact("Rajat", "Sharma", "2nd cross, Hosa Road", "Bangalore", "Karnataka", "560100", "9191273498", "rajatsp@yahoo.com");
+printContacts(addressBook);
