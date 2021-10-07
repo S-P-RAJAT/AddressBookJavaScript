@@ -19,9 +19,9 @@ class Contact {
             this._firstName = name;
         else throw 'First Name is incorrect';
     }
-    get lastName() { return this._firstName; }
+    get lastName() { return this._lastName; }
     set lastName(name) {
-        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}');
         if (nameRegex.test(name))
             this._lastName = name;
         else throw 'Last Name is incorrect';
@@ -81,8 +81,10 @@ class Contact {
     }
 }
 try {
-    let contact = new Contact("Rahul", "Pandey", "2nd cross, electronic city", "Bangalore", "Karnataka", "560100", "9191123498", "rahulp@yahoo.com");
-    console.log(contact.toString());
+    let addressBook = new Array();
+    addressBook.push(new Contact("Rahul", "Pandey", "4th cross, electronic city", "Bangalore", "Karnataka", "560100", "9191123498", "rahulp@yahoo.com"));
+    addressBook.push(new Contact("Rajat", "Sharma", "2nd cross, Hosa Road", "Bangalore", "Karnataka", "560100", "9191273498", "rajatsp@yahoo.com"));
+    console.log(addressBook[1].toString());
 } catch (e) {
     console.error(e);
 }
