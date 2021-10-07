@@ -189,3 +189,15 @@ if(contacts.length>0)
 console.log("The people in the city "+City+" are :"+contacts);
 else
 console.log("No people found in the city");
+
+function viewContactsByState(state,array){
+    let contacts = array.filter(e=>e.state == state).map(e=>e.firstName+" "+e.lastName);
+    return contacts;
+}
+
+let State = "Karnataka";
+contacts = viewContactsByState(State,addressBook);
+if(contacts.length>0)
+console.log("The people in the state "+State+" are :"+contacts);
+else
+console.log("No people found in the given state");
