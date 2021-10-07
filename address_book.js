@@ -133,114 +133,114 @@ deleteContact("Rajat", "Sharma");
 printContacts(addressBook);
 
 
-function totalContact(numberOfContact){
-    return numberOfContact+1;
+function totalContact(numberOfContact) {
+    return numberOfContact + 1;
 }
 
-let numberOfCOntacts = addressBook.reduce(totalContact,0);
-console.log("Number of contacts: "+numberOfCOntacts);
+let numberOfCOntacts = addressBook.reduce(totalContact, 0);
+console.log("Number of contacts: " + numberOfCOntacts);
 
 function addContact(...params) {
     firstname = params[0];
-    lastname = params[1]; 
-    let countOfPersons = addressBook.filter(contact=>contact.firstName == firstname && contact.lastName == lastname).reduce((totalPeople,e)=>totalPeople+1,0);
-    if (countOfPersons==0){
-        try{
-        let newContact = new Contact(params[0],params[1],params[2],params[3],params[4],params[5],params[6],params[7]);
-        addressBook.push(newContact);
-        console.log("Successfully added!");
-        }catch(e){
+    lastname = params[1];
+    let countOfPersons = addressBook.filter(contact => contact.firstName == firstname && contact.lastName == lastname).reduce((totalPeople, e) => totalPeople + 1, 0);
+    if (countOfPersons == 0) {
+        try {
+            let newContact = new Contact(params[0], params[1], params[2], params[3], params[4], params[5], params[6], params[7]);
+            addressBook.push(newContact);
+            console.log("Successfully added!");
+        } catch (e) {
             console.error(e);
         }
     }
-    else{
+    else {
         console.log("The Contact with name already exists");
     }
-    
+
 }
 addContact("Rajat", "Sharma", "2nd cross, Hosa Road", "Bangalore", "Karnataka", "560100", "9191273498", "rajatsp@yahoo.com");
 addContact("Rajat", "Sharma", "2nd cross, Hosa Road", "Bangalore", "Karnataka", "560100", "9191273498", "rajatsp@yahoo.com");
 printContacts(addressBook);
 
-function searchContactInCity(firstName,lastName, city,array){
-    let contacts = array.filter(e=>e.city == city && e.firstName== firstName && e.lastName==lastName)
-    .reduce((totalCount,e)=>totalCount+1,0);
-    if(contacts==0)
-    return false;
+function searchContactInCity(firstName, lastName, city, array) {
+    let contacts = array.filter(e => e.city == city && e.firstName == firstName && e.lastName == lastName)
+        .reduce((totalCount, e) => totalCount + 1, 0);
+    if (contacts == 0)
+        return false;
     else
-    return true;
+        return true;
 }
 let firstName = "Rajat";
 let lastName = "Sharma";
-let isPersonPresent = searchContactInCity(firstname,lastName,"Bangalore",addressBook);
-if(isPersonPresent==true)
-console.log("The person "+firstName+" "+lastName+" is found in the city ");
+let isPersonPresent = searchContactInCity(firstname, lastName, "Bangalore", addressBook);
+if (isPersonPresent == true)
+    console.log("The person " + firstName + " " + lastName + " is found in the city ");
 else
-console.log("The person "+firstName+" "+lastName+" is not found in the city ");
+    console.log("The person " + firstName + " " + lastName + " is not found in the city ");
 
-function viewContactsByCity(city,array){
-    let contacts = array.filter(e=>e.city == city).map(e=>e.firstName+" "+e.lastName);
+function viewContactsByCity(city, array) {
+    let contacts = array.filter(e => e.city == city).map(e => e.firstName + " " + e.lastName);
     return contacts;
 }
 
 City = "Bangalore";
-let contacts = viewContactsByCity(City,addressBook);
-if(contacts.length>0)
-console.log("The people in the city "+City+" are :"+contacts);
+let contacts = viewContactsByCity(City, addressBook);
+if (contacts.length > 0)
+    console.log("The people in the city " + City + " are :" + contacts);
 else
-console.log("No people found in the city");
+    console.log("No people found in the city");
 
-function viewContactsByState(state,array){
-    let contacts = array.filter(e=>e.state == state).map(e=>e.firstName+" "+e.lastName);
+function viewContactsByState(state, array) {
+    let contacts = array.filter(e => e.state == state).map(e => e.firstName + " " + e.lastName);
     return contacts;
 }
 
 let State = "Karnataka";
-contacts = viewContactsByState(State,addressBook);
-if(contacts.length>0)
-console.log("The people in the state "+State+" are :"+contacts);
+contacts = viewContactsByState(State, addressBook);
+if (contacts.length > 0)
+    console.log("The people in the state " + State + " are :" + contacts);
 else
-console.log("No people found in the given state");
+    console.log("No people found in the given state");
 
 
-function getContactsCountByCity(city,array){
-    let count = array.filter(e=>e.city == city).reduce((totalCount,e)=>totalCount+1,0);
+function getContactsCountByCity(city, array) {
+    let count = array.filter(e => e.city == city).reduce((totalCount, e) => totalCount + 1, 0);
     return count;
 }
-console.log("No of people in city "+City+": "+getContactsCountByCity(City,addressBook));
+console.log("No of people in city " + City + ": " + getContactsCountByCity(City, addressBook));
 
-function getContactsCountByState(state,array){
-    let count = array.filter(e=>e.state == state).reduce((totalCount,e)=>totalCount+1,0);
+function getContactsCountByState(state, array) {
+    let count = array.filter(e => e.state == state).reduce((totalCount, e) => totalCount + 1, 0);
     return count;
 }
-console.log("No of people in State "+State+": "+getContactsCountByState(State,addressBook));
+console.log("No of people in State " + State + ": " + getContactsCountByState(State, addressBook));
 
 
-function sortContactsByName(array){
-    array.sort((a,b)=> ((a.firstName+a.lastName)>(b.firstName+b.lastName)) 
-    ? 1 
-    : (((a.firstName+a.lastName)<(b.firstName+b.lastName))? -1 : 0));
+function sortContactsByName(array) {
+    array.sort((a, b) => ((a.firstName + a.lastName) > (b.firstName + b.lastName))
+        ? 1
+        : (((a.firstName + a.lastName) < (b.firstName + b.lastName)) ? -1 : 0));
     return array;
 }
 
 let newaddressBook = sortContactsByName(addressBook);
 printContacts(newaddressBook);
 
-function sortContactsByAttribute(array,attribute){
-    array.sort((a,b)=> (a[attribute]>b[attribute]) ? 1 : ((a[attribute]<b[attribute])? -1 : 0));
+function sortContactsByAttribute(array, attribute) {
+    array.sort((a, b) => (a[attribute] > b[attribute]) ? 1 : ((a[attribute] < b[attribute]) ? -1 : 0));
     return array;
 }
 editContact("Rajat", "Sharma", "city", "Agra");
 console.log("Sort by City:");
-newaddressBook = sortContactsByAttribute(addressBook,"city");
+newaddressBook = sortContactsByAttribute(addressBook, "city");
 printContacts(newaddressBook);
 
 editContact("Rajat", "Sharma", "state", "Delhi");
 console.log("Sort by State:");
-newaddressBook = sortContactsByAttribute(addressBook,"state");
+newaddressBook = sortContactsByAttribute(addressBook, "state");
 printContacts(newaddressBook);
 
 editContact("Rajat", "Sharma", "zip", 572345);
 console.log("Sort by Zip:");
-newaddressBook = sortContactsByAttribute(addressBook,"zip");
+newaddressBook = sortContactsByAttribute(addressBook, "zip");
 printContacts(newaddressBook);
