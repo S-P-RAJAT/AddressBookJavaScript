@@ -214,3 +214,14 @@ function getContactsCountByState(state,array){
     return count;
 }
 console.log("No of people in State "+State+": "+getContactsCountByState(State,addressBook));
+
+
+function sortContactsByName(array){
+    array.sort((a,b)=> ((a.firstName+a.lastName)>(b.firstName+b.lastName)) 
+    ? 1 
+    : (((a.firstName+a.lastName)<(b.firstName+b.lastName))? -1 : 0));
+    return array;
+}
+
+addressBook = sortContactsByName(addressBook);
+printContacts(addressBook);
