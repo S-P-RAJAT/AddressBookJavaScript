@@ -201,3 +201,16 @@ if(contacts.length>0)
 console.log("The people in the state "+State+" are :"+contacts);
 else
 console.log("No people found in the given state");
+
+
+function getContactsCountByCity(city,array){
+    let count = array.filter(e=>e.city == city).reduce((totalCount,e)=>totalCount+1,0);
+    return count;
+}
+console.log("No of people in city "+City+": "+getContactsCountByCity(City,addressBook));
+
+function getContactsCountByState(state,array){
+    let count = array.filter(e=>e.state == state).reduce((totalCount,e)=>totalCount+1,0);
+    return count;
+}
+console.log("No of people in State "+State+": "+getContactsCountByState(State,addressBook));
